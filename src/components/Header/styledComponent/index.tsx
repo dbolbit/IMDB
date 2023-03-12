@@ -1,6 +1,10 @@
 import {alpha, styled} from "@mui/material/styles";
-import {InputBase} from "@mui/material";
+import {InputBase, AppBarProps, AppBar} from "@mui/material";
 
+
+interface MyAppBarProps extends AppBarProps {
+    open?: boolean;
+}
 export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     right:0,
@@ -42,3 +46,14 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
         },
     },
 }));
+
+
+
+export const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    // padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+}))

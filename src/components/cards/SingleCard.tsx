@@ -1,29 +1,28 @@
-import {FC} from "react";
-import {Card,  Typography,CardActions ,CardContent ,CardMedia ,Button,} from "@mui/material";
+import {FC, useEffect} from "react";
+import style from './../../styles/Home.module.css'
+import Image from "next/image";
+import {Post} from "@/types/MyTypes";
+import {ListItem, ListItemIcon, ListItemText, ListItemButton, TableContainer, Table,Paper,TableHead,TableCell,TableRow} from "@mui/material";
 
-const SingleCard:FC = () => {
+interface CardProps {
+    item:Post
+}
+const SingleCard:FC<CardProps> = ({item}) => {
+    const {id,image,title,imDbRating,rank} = item
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-                sx={{ height: 140 }}
-                image="/static/images/cards/contemplative-reptile.jpg"
-                title="green iguana"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
-            </CardActions>
-        </Card>
+        // <ListItem button divider>
+        //     <ListItemText>
+        //         <strong>{rank}.</strong> {title}
+        //     </ListItemText>
+        //     <ListItemButton>
+        //         Button
+        //     </ListItemButton>
+        //     <ListItemIcon>
+        //         <Image src={image} alt={'alt'} width={40} height={60}/>
+        //     </ListItemIcon>
+        // </ListItem>
+        null
     )
 }
 

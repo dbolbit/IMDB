@@ -8,4 +8,6 @@ export type Post = {
     crew: string,
     imDbRating: string,
     imDbRatingCount: string,
+    rankUpDown: string,
+
 }

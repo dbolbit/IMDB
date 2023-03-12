@@ -3,20 +3,19 @@
     min-height: 500px;
     padding: 0;
 }
-.box{
-    width: 300px;
-    border: 1px solid black;
-    height: 300px;
-}
-.search{
-    /*border: 2px solid red;*/
-}
 .border{
     border: 2px solid red;
 }
 .posts_wrapper{
     margin-top: 20px;
-    padding: 0 20px;
-    height: 400px;
+    min-height: 400px;
     /*border: 2px solid red;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*flex-wrap: wrap;*/
+}
+.single_card{
+    width: 250px;
+    height: 350px;
+    border:2px solid red;
 }

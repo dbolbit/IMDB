@@ -1,18 +1,41 @@
-import React, {FC} from 'react';
-import {InputBase,Menu,MenuItem,IconButton,Badge,Box,AppBar,Toolbar,Typography} from '@mui/material'
+import React, {FC,useState} from 'react';
+import {ChevronLeft} from "@mui/icons-material";
+import {
+    Drawer,
+    IconButton,
+    Box,
+    AppBar,
+    Toolbar,
+    Typography,
+    List,
+    ListItem,
+    ListItemText,
+    Divider, ListItemButton, ListItemIcon
+} from '@mui/material'
 
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import style from '../../styles/Home.module.css'
-import {SearchIconWrapper,Search,StyledInputBase} from "@/components/Header/styledComponent";
+import {
+    SearchIconWrapper,
+    Search,
+    StyledInputBase,
+    DrawerHeader
+} from "@/components/Header/styledComponent";
+
+import {useRouter} from "next/router";
 
 
 const Header:FC = () => {
+    const [open,setOpen] = useState<boolean>(false)
+    const siderOpen = ()=>setOpen(true)
+    const siderClose = ()=>setOpen(false)
 
+    const router = useRouter()
 
-return (
-    <Box >
-        <AppBar position="static">
+    return (
+    <Box display='flex'>
+        <AppBar position="static" >
             <Toolbar>
                 <IconButton
                     size="large"
@@ -20,6 +43,7 @@ return (
                     color="inherit"
                     aria-label="open drawer"
                     sx={{ mr: 2 }}
+                    onClick={siderOpen}
                 >
                     <MenuIcon />
                 </IconButton>
@@ -27,7 +51,8 @@ return (
                     variant="h6"
                     noWrap
                     component="div"
-                    sx={{ display: { xs: 'none', sm: 'block' } }}
+                    sx={{ display: { xs: 'none', sm: 'block' },cursor:'pointer' }}
+                    onClick={()=>{router.push('/')}}
                 >
                     IMDB
                 </Typography>
@@ -42,6 +67,36 @@ return (
                     </Search>
             </Toolbar>
         </AppBar>
+        <Drawer
+            sx={{
+                width: 240,
+                flexShrink: 0,
+                '& .MuiDrawer-paper': {
+                    width: 240,
+                    boxSizing: 'border-box',
+                },
+            }}
+            variant="persistent"
+            anchor="left"
+            open={open}
+        >
+            <DrawerHeader>
+                <IconButton onClick={siderClose}>
+                    <ChevronLeft />
+                </IconButton>
+            </DrawerHeader>
+            <Divider />
+            <List>
+                {["Главная","Фильмы","Сериалы"].map((text, index) => (
+                    <ListItem key={text} disablePadding>
+                        <ListItemButton>
+                            <ListItemText primary={text} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </List>
+        </Drawer>
+
     </Box>)
 }
 
